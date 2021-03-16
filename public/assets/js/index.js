@@ -64,7 +64,8 @@ const renderActiveNote = () => {
   }
 };
 
-const handleNoteSave = () => {
+const handleNoteSave = (e) => {
+  e.preventDefault();
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
@@ -102,6 +103,7 @@ const handleNoteView = (e) => {
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
+  e.preventDefault();
   activeNote = {};
   renderActiveNote();
 };

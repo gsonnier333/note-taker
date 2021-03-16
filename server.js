@@ -27,6 +27,23 @@ app.get("/api/notes", (req, res) =>{
         }
         res.json(data);
     })
+});
+app.post("/api/notes", (req, res) => {
+    fs.readFile("./db/db.json", "utf8", (err, data) => {
+        if(err){
+            console.error(err);
+            return;
+        }
+        const notes = JSON.parse(data);
+        notes.push(req.body);
+        fs.writeFile("./db/db.json", JSON.stringify(notes), er => {
+            if(er){
+                console.error(er);
+                return;
+            }
+            console.log("Success!");
+        })
+    })
 })
 
 //start listening
