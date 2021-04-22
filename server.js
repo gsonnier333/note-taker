@@ -28,6 +28,39 @@ app.get("/api/notes", (req, res) =>{
         res.json(data);
     })
 });
+app.delete("/api/notes/:id", (req, res)=>{
+    const delId = parseInt(req.params.id);
+    fs.readFile("./db/db.json", "utf8", (err, data)=>{
+        if(err){
+            console.error(err);
+            return;
+        }
+        const notes = JSON.parse(data);
+        let updated = notes; //create a mutable array to write after deleting the correct element
+        let delIndex = 0;
+        for(let i = 0; i<notes.length; i++){
+            if(notes[i].id === delId){
+                delIndex = i;
+                console.log("found at " + delIndex);
+                break; //we found the index of our item, break out of the loop
+            }
+            else{
+                console.log("searching");
+            }
+        }
+        
+        updated.splice(delIndex, 1); //remove the appropriate item
+        
+        fs.writeFile("./db/db.json", JSON.stringify(updated), er => {
+            if(er){
+                console.error(er);
+                return;
+            }
+            console.log("Deleted id " + delId + " at index " + delIndex);
+            res.json(updated);
+        })
+    })
+})
 app.post("/api/notes", (req, res) => {
     fs.readFile("./db/db.json", "utf8", (err, data) => {
         if(err){
