@@ -42,6 +42,7 @@ app.post("/api/notes", (req, res) => {
                 return;
             }
             console.log("Success!");
+            res.json(notes);
         })
     })
 })

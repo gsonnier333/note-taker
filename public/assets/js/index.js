@@ -65,7 +65,7 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = (e) => {
-  e.preventDefault();
+  //e.preventDefault();
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
@@ -74,6 +74,7 @@ const handleNoteSave = (e) => {
     getAndRenderNotes();
     renderActiveNote();
   });
+  getAndRenderNotes();
 };
 
 // Delete the clicked note
@@ -103,7 +104,7 @@ const handleNoteView = (e) => {
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
-  e.preventDefault();
+  //e.preventDefault();
   activeNote = {};
   renderActiveNote();
 };
@@ -119,7 +120,7 @@ const handleRenderSaveBtn = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
-  jsonNotes = JSON.parse(jsonNotes);
+  parsedNotes = JSON.parse(jsonNotes);
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
@@ -154,11 +155,11 @@ const renderNoteList = async (notes) => {
     return liEl;
   };
 
-  if (jsonNotes.length === 0) {
+  if (parsedNotes.length === 0) {
     noteListItems.push(createLi('No saved Notes', false));
   }
   
-  jsonNotes.forEach((note) => {
+  parsedNotes.forEach((note) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
 
@@ -168,6 +169,7 @@ const renderNoteList = async (notes) => {
   if (window.location.pathname === '/notes') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
+  
 };
 
 // Gets notes from the db and renders them to the sidebar
