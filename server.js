@@ -41,7 +41,7 @@ app.post("/api/notes", (req, res) => {
             newNote.id = lastId + 1; //give a new id, +1
         }
         else{
-            newNote.id = 0;
+            newNote.id = 1; //start at 1 instead of 0 or the index.js code won't recognize it when trying to display it individually
         }
         notes.push(req.body);
         fs.writeFile("./db/db.json", JSON.stringify(notes), er => {
