@@ -35,6 +35,14 @@ app.post("/api/notes", (req, res) => {
             return;
         }
         const notes = JSON.parse(data);
+        let newNote = req.body;
+        if(notes.length > 0){
+            let lastId = notes[notes.length-1].id;
+            newNote.id = lastId + 1; //give a new id, +1
+        }
+        else{
+            newNote.id = 0;
+        }
         notes.push(req.body);
         fs.writeFile("./db/db.json", JSON.stringify(notes), er => {
             if(er){
