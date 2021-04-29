@@ -41,11 +41,11 @@ app.delete("/api/notes/:id", (req, res)=>{
         for(let i = 0; i<notes.length; i++){
             if(notes[i].id === delId){
                 delIndex = i;
-                console.log("found at " + delIndex);
+                //console.log("found at " + delIndex);
                 break; //we found the index of our item, break out of the loop
             }
             else{
-                console.log("searching");
+                //console.log("searching");
             }
         }
         
@@ -56,7 +56,7 @@ app.delete("/api/notes/:id", (req, res)=>{
                 console.error(er);
                 return;
             }
-            console.log("Deleted id " + delId + " at index " + delIndex);
+            //console.log("Deleted id " + delId + " at index " + delIndex);
             res.json(updated);
         })
     })
@@ -82,7 +82,7 @@ app.post("/api/notes", (req, res) => {
                 console.error(er);
                 return;
             }
-            console.log("Success!");
+            //console.log("Success!");
             res.json(notes);
         })
     })
