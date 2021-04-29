@@ -1,6 +1,6 @@
 # Note Taker
 
-Deployed at: https://gsonnier333.github.io/note-taker/
+Deployed at: https://dashboard.heroku.com/apps/note-taker-tri-gfs
 ![Note taker app in action](./Assets/note-taker.PNG)
 
 ## Assignment
